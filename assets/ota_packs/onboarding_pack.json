@@ -1,0 +1,15 @@
+[
+  {
+    "_id": "67cb09010ee57fb26c2f8672",
+    "appId": "67ca378c068ec1bef3cac08f",
+    "title": "Welcome to Our App",
+    "description": "Start your journey with us and discover amazing features",
+    "icon": "home",
+    "category": "welcome",
+    "screenType": "greeting",
+    "order": 0,
+    "createdAt": "2025-03-07T14:56:01.699Z",
+    "updatedAt": "2025-03-07T14:56:01.699Z",
+    "__v": 0
+  }
+]

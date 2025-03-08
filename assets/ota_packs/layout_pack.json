@@ -1,0 +1,58 @@
+{
+  "_id": "67ca378c068ec1bef3cac0a9",
+  "appId": "67ca378c068ec1bef3cac08f",
+  "layoutType": "default",
+  "bottomBarTabs": [
+    {
+      "name": "Home",
+      "iconName": "Home",
+      "visible": true,
+      "isHome": true,
+      "iconCategory": "outline",
+      "routeType": "screen",
+      "route": "/home",
+      "_id": "67cb08fc0ee57fb26c2f864a"
+    },
+    {
+      "name": "Settings",
+      "iconName": "Settings",
+      "visible": true,
+      "isHome": false,
+      "iconCategory": "outline",
+      "routeType": "screen",
+      "route": "/settings",
+      "_id": "67cb08fc0ee57fb26c2f864b"
+    },
+    {
+      "name": "Cart",
+      "iconName": "ShoppingCart",
+      "visible": true,
+      "isHome": false,
+      "iconCategory": "outline",
+      "routeType": "screen",
+      "route": "/cart",
+      "_id": "67cb08fc0ee57fb26c2f864c"
+    },
+    {
+      "name": "Offers",
+      "iconName": "LocalOffer",
+      "visible": true,
+      "isHome": false,
+      "iconCategory": "outline",
+      "routeType": "screen",
+      "route": "/offers",
+      "_id": "67cb08fc0ee57fb26c2f864d"
+    },
+    {
+      "name": "Account",
+      "iconName": "AccountCircle",
+      "visible": true,
+      "isHome": false,
+      "iconCategory": "outline",
+      "routeType": "screen",
+      "route": "/account",
+      "_id": "67cb08fc0ee57fb26c2f864e"
+    }
+  ],
+  "__v": 2
+}

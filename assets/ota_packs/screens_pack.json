@@ -1,0 +1,119 @@
+[
+  {
+    "_id": "67ca378c068ec1bef3cac09f",
+    "name": "Home",
+    "route": "/home",
+    "appId": "67ca378c068ec1bef3cac08f",
+    "screenType": "content-list",
+    "widgetScreenId": null,
+    "settings": {
+      "backgroundColor": "#ffffff",
+      "padding": 16,
+      "layoutType": "flex",
+      "_id": "67ca378c068ec1bef3cac0a0"
+    },
+    "isActive": true,
+    "description": "Festival home screen with latest updates",
+    "tags": [
+      "default",
+      "home"
+    ],
+    "metadata": {
+      "order": 0,
+      "showThumbnails": true,
+      "showSearch": true,
+      "showFilters": false,
+      "showCategories": false,
+      "enableLocation": false,
+      "showFavorites": false,
+      "showSharing": false,
+      "enableNotifications": false,
+      "layout": "grid",
+      "requiresTicket": false,
+      "vipOnly": false,
+      "primaryColor": "#000000",
+      "_id": "67ca378c068ec1bef3cac0a1"
+    },
+    "createdAt": "2025-03-07T00:02:20.272Z",
+    "updatedAt": "2025-03-07T00:02:20.272Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ca378c068ec1bef3cac099",
+    "name": "Schedule",
+    "route": "/schedule",
+    "appId": "67ca378c068ec1bef3cac08f",
+    "screenType": "schedule",
+    "widgetScreenId": null,
+    "settings": {
+      "backgroundColor": "#ffffff",
+      "padding": 16,
+      "layoutType": "flex",
+      "_id": "67ca378c068ec1bef3cac09a"
+    },
+    "isActive": true,
+    "description": "Festival schedule and timeline",
+    "tags": [
+      "default",
+      "schedule"
+    ],
+    "metadata": {
+      "order": 1,
+      "showThumbnails": true,
+      "showSearch": true,
+      "showFilters": false,
+      "showCategories": false,
+      "enableLocation": false,
+      "showFavorites": false,
+      "showSharing": false,
+      "enableNotifications": false,
+      "layout": "grid",
+      "requiresTicket": false,
+      "vipOnly": false,
+      "primaryColor": "#000000",
+      "_id": "67ca378c068ec1bef3cac09b"
+    },
+    "createdAt": "2025-03-07T00:02:20.268Z",
+    "updatedAt": "2025-03-07T00:02:20.268Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ca378c068ec1bef3cac0a5",
+    "name": "Map",
+    "route": "/map",
+    "appId": "67ca378c068ec1bef3cac08f",
+    "screenType": "map",
+    "widgetScreenId": null,
+    "settings": {
+      "backgroundColor": "#ffffff",
+      "padding": 16,
+      "layoutType": "flex",
+      "_id": "67ca378c068ec1bef3cac0a6"
+    },
+    "isActive": true,
+    "description": "Interactive festival map",
+    "tags": [
+      "default",
+      "map"
+    ],
+    "metadata": {
+      "order": 2,
+      "showThumbnails": true,
+      "showSearch": true,
+      "showFilters": false,
+      "showCategories": false,
+      "enableLocation": false,
+      "showFavorites": false,
+      "showSharing": false,
+      "enableNotifications": false,
+      "layout": "grid",
+      "requiresTicket": false,
+      "vipOnly": false,
+      "primaryColor": "#000000",
+      "_id": "67ca378c068ec1bef3cac0a7"
+    },
+    "createdAt": "2025-03-07T00:02:20.275Z",
+    "updatedAt": "2025-03-07T00:02:20.275Z",
+    "__v": 0
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "_id": "67ca378b068ec1bef3cac08d",
+  "themeColors": {
+    "light": {
+      "mainAppBackground": "#FFFFFF",
+      "secondaryBackground": "#F7F7F7",
+      "mainText": "#000000",
+      "titleText": "#333333",
+      "importantText": "#2E9C00",
+      "accent": "#0072F5",
+      "secondaryAccent": "#7A7AFF",
+      "bottomBarBackground": "#F9F9F9",
+      "bottomBarSelectedIcon": "#1a1a19",
+      "bottomBarUnselectedIcon": "#BDC3C7",
+      "topBarBackground": "#FF9292",
+      "topBarTextAndIcon": "#FFFFFF"
+    },
+    "dark": {
+      "mainAppBackground": "#121212",
+      "secondaryBackground": "#1E1E1E",
+      "mainText": "#E0E0E0",
+      "titleText": "#AAAAAA",
+      "importantText": "#00BC78",
+      "accent": "#17C964",
+      "secondaryAccent": "#5E35B1",
+      "bottomBarBackground": "#000000",
+      "bottomBarSelectedIcon": "#F39C12",
+      "bottomBarUnselectedIcon": "#7F8C8D",
+      "topBarBackground": "#2E4053",
+      "topBarTextAndIcon": "#ECF0F1"
+    }
+  },
+  "statusBarTheme": "light",
+  "__v": 0
+}
