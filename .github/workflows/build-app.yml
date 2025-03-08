@@ -16,11 +16,11 @@ jobs:
 
       - name: Show Directory (Debug)
         run: |
-          echo "Listing root directory..."
+          echo "Listing root directory:"
           ls -al
-          echo "Listing android/ directory..."
+          echo "Listing android/ directory:"
           ls -al android || true
-          echo "Listing android/app/src/main directory..."
+          echo "Listing android/app/src/main directory:"
           ls -al android/app/src/main || true
 
       - name: Set up Flutter
@@ -52,5 +52,5 @@ jobs:
           name: flutter-apks
           path: |
             build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v7a-release.apk
             build/app/outputs/flutter-apk/app-x86_64-release.apk
