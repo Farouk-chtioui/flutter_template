@@ -23,6 +23,12 @@ jobs:
           echo "Listing android/app/src/main directory:"
           ls -al android/app/src/main || true
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -43,6 +49,11 @@ jobs:
       - name: Ensure AndroidManifest is in place
         run: cp android/app/src/main/AndroidManifest.xml android/AndroidManifest.xml
 
+      - name: Update Gradle
+        run: |
+          cd android
+          ./gradlew wrapper --gradle-version 8.0 --distribution-type all
+
       - name: Build APKs
         run: flutter build apk --release --split-per-abi --no-tree-shake-icons
 
@@ -52,5 +63,5 @@ jobs:
           name: flutter-apks
           path: |
             build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-            build/app/outputs/flutter-apk/app-arm64-v7a-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
             build/app/outputs/flutter-apk/app-x86_64-release.apk
