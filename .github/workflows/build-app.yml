@@ -50,9 +50,8 @@ jobs:
         run: cp android/app/src/main/AndroidManifest.xml android/AndroidManifest.xml
 
       - name: Update Gradle
-        run: |
-          cd android
-          ./gradlew wrapper --gradle-version 8.0 --distribution-type all
+        working-directory: flutter_template/android
+        run: ./gradlew wrapper --gradle-version 8.0 --distribution-type all
 
       - name: Build APKs
         run: flutter build apk --release --split-per-abi --no-tree-shake-icons
