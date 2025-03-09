@@ -59,8 +59,11 @@ jobs:
       - name: Flutter doctor
         run: flutter doctor -v
 
-      - name: Build APKs with repair flag
-        run: flutter build apk --release --split-per-abi --no-tree-shake-icons --repair
+      - name: Recreate Android project files
+        run: flutter create --platforms=android .
+
+      - name: Build APKs
+        run: flutter build apk --release --split-per-abi --no-tree-shake-icons
 
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
