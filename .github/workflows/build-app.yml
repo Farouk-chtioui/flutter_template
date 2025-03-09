@@ -14,6 +14,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Cache Flutter Pub Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Cache Gradle Files
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/android/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: Show Directory (Debug)
         run: |
           echo "Listing root directory:"
