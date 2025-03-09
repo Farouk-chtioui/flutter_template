@@ -49,8 +49,18 @@ jobs:
       - name: Ensure AndroidManifest is in place
         run: cp android/app/src/main/AndroidManifest.xml android/AndroidManifest.xml
 
+      - name: Locate gradlew (Debug)
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Finding all gradlew files:"
+          find . -name "gradlew" -type f
+
       - name: Update Gradle
-        run: ./gradlew wrapper --gradle-version 8.9 --distribution-type all
+        run: |
+          cd android
+          chmod +x ./gradlew
+          ./gradlew wrapper --gradle-version 8.0 --distribution-type all
 
       - name: Build APKs
         run: flutter build apk --release --split-per-abi --no-tree-shake-icons
