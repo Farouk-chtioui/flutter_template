@@ -1,71 +1,66 @@
 name: Build Flutter App
 
 on:
-  workflow_dispatch: # Allows manual triggering
-  push:
-    branches:
-      - main # Runs when new code is pushed
+  repository_dispatch:
+    types: [build_app]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CONFIG_JSON: ${{ toJson(github.event.client_payload.config) }}
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1 # Fetch only the latest commit
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Debug Folder Structure
+      - name: Show Directory (Debug)
         run: |
-          echo "Current Directory:"
-          pwd
-          echo "List of files:"
-          ls -R
+          echo "Listing root directory:"
+          ls -al
+          echo "Listing android/ directory:"
+          ls -al android || true
+          echo "Listing android/app/src/main directory:"
+          ls -al android/app/src/main || true
 
-      - name: Setup Flutter
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.x"
+          flutter-version: '3.10.5'
 
-      - name: Cache Flutter Dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.pub-cache
-            build/
-          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
-          restore-keys: |
-            flutter-${{ runner.os }}-
+      - name: Flutter Clean
+        run: flutter clean
 
-      - name: Cache Gradle Dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
-
-      - name: Ensure Android Directory Exists
+      - name: Apply Configuration
         run: |
-          if [ ! -d "android" ]; then
-            echo "Android directory is missing! Running flutter create ."
-            flutter create .
-          fi
+          echo "Applying configuration..."
+          echo "$CONFIG_JSON" > config.json
+          node scripts/applyConfig.js config.json
 
-      - name: Force Update Gradle Wrapper to 8.9
-        run: |
-          cd android
-          chmod +x gradlew
-          ./gradlew wrapper --gradle-version 8.9 --distribution-type all
+      - name: Get Flutter Dependencies
+        run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Ensure AndroidManifest is in place
+        run: cp android/app/src/main/AndroidManifest.xml android/AndroidManifest.xml
 
-      - name: Upload APK
+      - name: Update Gradle
+        working-directory: flutter_template/android
+        run: ./gradlew wrapper --gradle-version 8.9 --distribution-type all
+
+      - name: Build APKs
+        run: flutter build apk --release --split-per-abi --no-tree-shake-icons
+
+      - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: app-release.apk
-          path: build/app/outputs/apk/release/app-release.apk
+          name: flutter-apks
+          path: |
+            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-x86_64-release.apk
