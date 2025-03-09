@@ -56,14 +56,11 @@ jobs:
           echo "Finding all gradlew files:"
           find . -name "gradlew" -type f
 
-      - name: Update Gradle
-        run: |
-          cd android
-          chmod +x ./gradlew
-          ./gradlew wrapper --gradle-version 8.0 --distribution-type all
+      - name: Flutter doctor
+        run: flutter doctor -v
 
-      - name: Build APKs
-        run: flutter build apk --release --split-per-abi --no-tree-shake-icons
+      - name: Build APKs with repair flag
+        run: flutter build apk --release --split-per-abi --no-tree-shake-icons --repair
 
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
