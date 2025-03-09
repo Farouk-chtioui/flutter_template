@@ -50,7 +50,6 @@ jobs:
         run: cp android/app/src/main/AndroidManifest.xml android/AndroidManifest.xml
 
       - name: Update Gradle
-        working-directory: flutter_template/android
         run: ./gradlew wrapper --gradle-version 8.9 --distribution-type all
 
       - name: Build APKs
