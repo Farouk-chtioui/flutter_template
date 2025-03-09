@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1   # Get only latest commit to speed up
 
@@ -47,8 +47,8 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
+      - name: Upload APK (Updated Version)
+        uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
