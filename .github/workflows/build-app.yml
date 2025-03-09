@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1   # Get only latest commit to speed up
+          fetch-depth: 1 # Fetch only the latest commit
 
       - name: Debug Folder Structure
         run: |
@@ -28,26 +28,43 @@ jobs:
         with:
           flutter-version: "3.x"
 
-      - name: Install Dependencies
-        run: flutter pub get
+      - name: Cache Flutter Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            build/
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
 
-      - name: Ensure Correct Working Directory
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Ensure Android Directory Exists
         run: |
-          if [ -d "android" ]; then
-            echo "Android directory exists."
-          else
-            echo "Android directory is missing!"
-            exit 1
+          if [ ! -d "android" ]; then
+            echo "Android directory is missing! Running flutter create ."
+            flutter create .
           fi
 
-      - name: Prepare Gradle
-        working-directory: android
-        run: chmod +x gradlew && ./gradlew wrapper --gradle-version 8.0 --distribution-type all
+      - name: Force Update Gradle Wrapper to 8.9
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew wrapper --gradle-version 8.9 --distribution-type all
 
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK (Updated Version)
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
